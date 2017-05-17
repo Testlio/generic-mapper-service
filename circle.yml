@@ -1,0 +1,25 @@
+machine:
+  node:
+    version: "6.10"
+
+dependencies:
+  override:
+    - yarn
+
+test:
+  pre:
+    - npm run lint
+
+deployment:
+  prod:
+    branch: master
+    commands:
+      - NODE_ENV=production AUTH_SECRET=$AUTH_SECRET AUTH_TOKEN=$AUTH_TOKEN RAYGUN_API_KEY=$RAYGUN_API_KEY $(npm bin)/sls deploy -s prod
+  release:
+    branch: /release\/.*/
+    commands:
+      - NODE_ENV=production AUTH_SECRET=$AUTH_SECRET AUTH_TOKEN=$AUTH_TOKEN RAYGUN_API_KEY=$DEV_RAYGUN_API_KEY $(npm bin)/sls deploy -s staging
+  dev:
+    branch: dev
+    commands:
+      - NODE_ENV=production AUTH_SECRET=$DEV_AUTH_SECRET AUTH_TOKEN=$DEV_AUTH_TOKEN RAYGUN_API_KEY=$DEV_RAYGUN_API_KEY $(npm bin)/sls deploy -s dev

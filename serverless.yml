@@ -1,0 +1,60 @@
+service: &service asana-mapper-service
+
+custom:
+  writeEnvVars:
+    AUTH_SECRET: ${env:AUTH_SECRET}
+    AUTH_TOKEN: ${env:AUTH_TOKEN}
+    STAGE: ${opt:stage}
+    PROJECT_NAME: *service
+    RAYGUN_API_KEY: ${env:RAYGUN_API_KEY}
+    BASE_URL: ${env:BASE_URL}
+    NODE_ENV: ${env:NODE_ENV}
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - lambda:InvokeFunction
+        - lambda:InvokeAsync
+      Resource: "*"
+
+functions:
+  requestsPost:
+    handler: lambdas/requests-post/index.handler
+    timeout: 60
+    events:
+      - http:
+          path: requests
+          method: POST
+          authorizer: auth
+  auth:
+    handler: lambdas/auth/index.handler
+
+Outputs:
+  ServiceName:
+    Description: Service name
+    Value: asana-mapper
+  ServiceVersion:
+    Description: Service version
+    Value: 1
+  ServiceStage:
+    Description: Service deployment stage
+    Value: ${opt:stage}
+  RestApiName:
+    Description: API Gateway Rest API name
+    Value:
+      Fn::Join:
+        - "-"
+        -
+          - ${opt:stage}
+          - *service
+  RestApiStage:
+    Description: API Gateway Rest API stage
+    Value: ${opt:stage}
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-write-env-vars
+
