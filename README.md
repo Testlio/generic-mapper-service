@@ -1,6 +1,6 @@
 # General architecture
 
-![Architecture](https://cloud.githubusercontent.com/assets/2154171/26148664/2e25368e-3b00-11e7-9de9-cc5f8559a4d9.png)
+![Architecture](https://cloud.githubusercontent.com/assets/2154171/26197823/59a19dee-3bcc-11e7-8714-80b3b3e98683.png)
 _Order of actions_
 
 # Mapper contracts
