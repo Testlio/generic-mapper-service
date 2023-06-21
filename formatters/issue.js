@@ -1,6 +1,5 @@
 'use strict';
 
-const Entities = require('html-entities').Html5Entities;
 const _ = require('lodash');
 const SEVERITY = require('../constants/severity');
 const STATE = require('../constants/state');
@@ -98,9 +97,8 @@ exports.toLocal = (remoteData) => {
  * @returns {Object} data in remote service format
  */
 exports.toRemote = (issue, integration, resource) => {
-    const entities = new Entities();
-    const title = issue.issueData.title === EMPTY_TITLE ? '' : entities.decode(issue.issueData.title);
-    const description = issue.issueData.description === EMPTY_DESCRIPTION ? '' : entities.decode(issue.issueData.description);
+    const title = issue.issueData.title === EMPTY_TITLE ? '' : issue.issueData.title;
+    const description = issue.issueData.description === EMPTY_DESCRIPTION ? '' : issue.issueData.description;
     const tags = _.concat(issue.issueData.labels, [toRemoteSeverity(issue.issueData.severity), TESTLIO_TAG]);
     return {
         data: {
