@@ -39,7 +39,6 @@
     "content-disposition": "^0.5.2",
     "dotenv": "^2.0.0",
     "fs": "^0.0.1-security",
-    "html-entities": "^1.2.0",
     "joi": "^10.1.0",
     "jsonwebtoken": "^7.1.9",
     "keymirror": "^0.1.1",

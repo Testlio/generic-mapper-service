@@ -1,6 +1,5 @@
 'use strict';
 
-const Entities = require('html-entities').Html5Entities;
 const moment = require('moment');
 
 /**
@@ -30,11 +29,10 @@ exports.toLocal = (remoteData) => {
  * @returns {Object} data in remote service format
  */
 exports.toRemote = (data, resource) => {
-    const entities = new Entities();
     return {
         data: {
             task: Number(resource.parent.id),
-            text: entities.decode(data.comment)
+            text: data.comment
         }
     };
 };
