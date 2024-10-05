@@ -42,7 +42,7 @@
     "joi": "^10.1.0",
     "jsonwebtoken": "^7.1.9",
     "keymirror": "^0.1.1",
-    "lodash": "^4.16.4",
+    "lodash": "^4.17.21",
     "moment": "^2.18.1",
     "path": "^0.12.7",
     "querystring": "^0.2.0",
