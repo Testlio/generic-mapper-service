@@ -6,7 +6,6 @@ custom:
     AUTH_TOKEN: ${env:AUTH_TOKEN}
     STAGE: ${opt:stage}
     PROJECT_NAME: *service
-    RAYGUN_API_KEY: ${env:RAYGUN_API_KEY}
     BASE_URL: ${env:BASE_URL}
     NODE_ENV: ${env:NODE_ENV}
 

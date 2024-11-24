@@ -14,8 +14,8 @@ deployment:
   prod:
     branch: master
     commands:
-      - NODE_ENV=production AUTH_SECRET=$AUTH_SECRET AUTH_TOKEN=$AUTH_TOKEN RAYGUN_API_KEY=$RAYGUN_API_KEY $(npm bin)/sls deploy -s prod
+      - NODE_ENV=production AUTH_SECRET=$AUTH_SECRET AUTH_TOKEN=$AUTH_TOKEN $(npm bin)/sls deploy -s prod
   release:
     branch: /release\/.*/
     commands:
-      - NODE_ENV=production AUTH_SECRET=$AUTH_SECRET AUTH_TOKEN=$AUTH_TOKEN RAYGUN_API_KEY=$DEV_RAYGUN_API_KEY $(npm bin)/sls deploy -s staging
+      - NODE_ENV=production AUTH_SECRET=$AUTH_SECRET AUTH_TOKEN=$AUTH_TOKEN $(npm bin)/sls deploy -s staging
