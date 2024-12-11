@@ -35,7 +35,7 @@
     "tape": "^4.5.1"
   },
   "dependencies": {
-    "aws-sdk": "^2.7.21",
+    "aws-sdk": "^2.1691.0",
     "content-disposition": "^0.5.2",
     "dotenv": "^2.0.0",
     "fs": "^0.0.1-security",
