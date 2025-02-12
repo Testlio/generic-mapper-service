@@ -3,7 +3,6 @@
 const _ = require('lodash');
 const SEVERITY = require('../constants/severity');
 const STATE = require('../constants/state');
-const FIXED_TAG = 'fixed';
 const TESTLIO_TAG = 'testlio';
 const EMPTY_TITLE = '(no title)';
 const EMPTY_DESCRIPTION = '(no description)';
@@ -49,15 +48,10 @@ function detectSeverity(tags) {
  * Converts remote state to local state
  *
  * @param {Object} remoteData data in remote system format
- * @param {Array.<string>} tags in remote system
  * @returns {string} state
  */
-function getLocalState(remoteData, tags) {
-    if (includes(tags, FIXED_TAG)) {
-        return remoteData.data.completed ? STATE.FIXED : STATE.VERIFICATION;
-    } else {
-        return remoteData.data.completed ? STATE.CLOSED : STATE.OPEN;
-    }
+function getLocalState(remoteData) {
+    return remoteData.data.completed ? STATE.FIXED : STATE.OPEN;
 }
 
 /**
@@ -76,7 +70,7 @@ exports.toLocal = (remoteData) => {
             id: remoteData.data.id.toString()
         },
         response: {
-            state: getLocalState(remoteData, tags),
+            state: getLocalState(remoteData),
             issueData: {
                 title: remoteData.data.name || EMPTY_TITLE,
                 description: remoteData.data.notes || EMPTY_DESCRIPTION,
