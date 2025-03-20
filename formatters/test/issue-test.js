@@ -64,7 +64,7 @@ describe('formatters/issue', function() {
                 tags: [
                     { name: 'testlio', id: 1 },
                     { name: 'tag', id: 2 }, { name: 'P3', id: 3 },
-                    { name: 'fixed', id: 4 }
+                    { name: 'crash', id: 4 }
                 ],
                 'modified_at': '2016-02-22T02:06:58.147Z'
             }
@@ -76,7 +76,7 @@ describe('formatters/issue', function() {
                     title: 'someName',
                     description: 'description',
                     severity: 'low',
-                    labels: ['tag', 'fixed']
+                    labels: ['tag', 'crash']
                 },
                 state: 'verification'
             },
@@ -108,14 +108,14 @@ describe('formatters/issue', function() {
                 completed: false,
                 projects: [2]
             },
-            tags: ['tag', 'fixed', 'P3', 'testlio']
+            tags: ['tag', 'crash', 'P3', 'testlio']
         };
         const issue = {
             issueData: {
                 title: 'someName',
                 description: 'description',
                 severity: 'low',
-                labels: ['tag', 'fixed']
+                labels: ['tag', 'crash']
             }
         };
         const result = issueFormatter.toRemote(issue, integration, resource);
